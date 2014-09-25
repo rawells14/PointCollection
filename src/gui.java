@@ -39,7 +39,7 @@ public class gui extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(397, 300));
+        setMinimumSize(new java.awt.Dimension(440, 340));
         getContentPane().setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(153, 153, 153));
@@ -59,32 +59,42 @@ public class gui extends javax.swing.JFrame {
         jButton2.setBounds(150, 220, 90, 23);
 
         jTextField1.setText("Full Name");
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField1);
         jTextField1.setBounds(150, 40, 80, 30);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Meeting", "Contest", "Volunteer" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Meeting", "Donation", "Contest", "Volunteer" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
             }
         });
         jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(150, 80, 80, 20);
+        jComboBox1.setBounds(150, 80, 130, 20);
 
         jCheckBox1.setText("TShirt");
         jPanel2.add(jCheckBox1);
         jCheckBox1.setBounds(150, 110, 90, 23);
 
         jTextField2.setText("Amount Donated");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jTextField2);
         jTextField2.setBounds(150, 110, 130, 20);
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 400, 310);
+        jPanel2.setBounds(0, 0, 430, 340);
 
         jLabel1.setText("Point Collection");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(150, 40, 99, 14);
+        jLabel1.setBounds(170, 40, 99, 14);
 
         jButton3.setText("Help");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -102,25 +112,21 @@ public class gui extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(130, 260, 110, 23);
+        jButton1.setBounds(150, 260, 110, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        jButton1.setVisible(false);
+        jButton3.setVisible(false);
         jPanel2.setVisible(true);
         jTextField2.setVisible(false);
+        jCheckBox1.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            PrintWriter pw = new PrintWriter(new FileWriter("data.csv", true));
 
-            pw.append("\nhello,hello");
-            pw.append("");
-            pw.close();
-        } catch (Exception e) {
-        }
         addPoints();
         reset();
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -139,14 +145,40 @@ public class gui extends javax.swing.JFrame {
             jTextField2.setVisible(true);
         }
     }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
     public void reset() {
         jCheckBox1.setSelected(false);
         jTextField2.setText("Amount Donated");
         jComboBox1.setSelectedIndex(0);
         jPanel2.setVisible(false);
+        jButton1.setVisible(true);
+        jButton3.setVisible(true);
+    }
+
+    public void log(String s) {
     }
 
     public void addPoints() {
+        int tot = 0;
+        tot += Integer.parseInt(jTextField2.getText());
+        if (jCheckBox1.isSelected()) {
+            tot++;
+        }
+        
+        try {
+            PrintWriter pw = new PrintWriter(new FileWriter("data.csv", true));
+
+            pw.append(jTextField1.getText() + ", " + tot);
+            pw.close();
+        } catch (Exception e) {
+        }
     }
 
     public static void main(String args[]) {
