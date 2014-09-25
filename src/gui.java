@@ -164,18 +164,23 @@ public class gui extends javax.swing.JFrame {
 
     public void log(String s) {
     }
+//meeting, donation, contest, volunteer
 
     public void addPoints() {
         int tot = 0;
-        tot += Integer.parseInt(jTextField2.getText());
-        if (jCheckBox1.isSelected()) {
+        if (jComboBox1.getSelectedIndex() == 0) {
             tot++;
+            if (jCheckBox1.isSelected()) {
+                tot++;
+            }
         }
-        
+        if (jComboBox1.getSelectedIndex() == 1) {
+            tot += Integer.parseInt(jTextField2.getText());
+        }
         try {
-            PrintWriter pw = new PrintWriter(new FileWriter("data.csv", true));
-
+            PrintWriter pw = new PrintWriter(new FileWriter("data.csv"));
             pw.append(jTextField1.getText() + ", " + tot);
+            pw.append("");
             pw.close();
         } catch (Exception e) {
         }
