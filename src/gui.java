@@ -167,7 +167,7 @@ public class gui extends javax.swing.JFrame {
 //meeting, donation, contest, volunteer
 
     public void addPoints() {
-        int tot = 0;
+        int tot = 7;
         if (jComboBox1.getSelectedIndex() == 0) {
             tot++;
             if (jCheckBox1.isSelected()) {
