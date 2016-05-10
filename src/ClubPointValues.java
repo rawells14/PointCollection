@@ -1,24 +1,21 @@
 
 public class ClubPointValues {
 
-    public int tshirt = 1;
-    public int meetingAttendance = 1;
-    public int contest = 3;
-    public int foodDonation = 1;
+    private int pointValues[1,1,3,1];
 
     public int getTshirt() {
-        return tshirt;
+        return pointValues[0];
     }
 
     public int getMeetingAttendance() {
-        return meetingAttendance;
+        return pointValues[1];
     }
 
     public int getContest() {
-        return contest;
+        return pointValues[2];
     }
 
     public int getFoodDonation() {
-        return foodDonation;
+        return pointValues[3];
     }
 }
